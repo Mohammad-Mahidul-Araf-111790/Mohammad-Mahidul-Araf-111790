@@ -108,7 +108,7 @@ class Araf:
 > 🤖 *Auto-managed — every new public repo triggers an approval issue. Reply `yes` to append it here, `no` to skip.*
 
 <!-- SHOWCASE:START -->
-1. [Daily-Expense-Logger](https://github.com/Mohammad-Mahidul-Araf-111790/Daily-Expense-Logger)
+1. [Personal-Habit-Tracker](https://github.com/Mohammad-Mahidul-Araf-111790/Personal-Habit-Tracker)
 <!-- SHOWCASE:END -->
 
 ---
@@ -116,13 +116,13 @@ class Araf:
 ## 📈 GitHub Stats
 
 <div align="center">
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=Mohammad-Mahidul-Araf-111790 &show_icons=true&hide_border=false&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2&icon_color=BD93F9&include_all_commits=true&count_private=true" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=Mohammad-Mahidul-Araf-111790&show_icons=true&hide_border=false&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2&icon_color=BD93F9&include_all_commits=true&count_private=true" />
 &nbsp;
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mohammad-Mahidul-Araf-111790 &layout=compact&langs_count=8&hide_border=false&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mohammad-Mahidul-Araf-111790&layout=compact&langs_count=8&hide_border=false&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2" />
 <br/>
-<img src="https://streak-stats.demolab.com?user=Mohammad-Mahidul-Araf-111790 &mode=daily&background=0D1117&border=FF5555&stroke=BD93F9&ring=00D4FF&fire=FF5555&currStreakNum=00D4FF&sideNums=BD93F9&currStreakLabel=00D4FF&sideLabels=8BE9FD&dates=6272A4" />
+<img src="https://streak-stats.demolab.com?user=Mohammad-Mahidul-Araf-111790&mode=daily&background=0D1117&border=FF5555&stroke=BD93F9&ring=00D4FF&fire=FF5555&currStreakNum=00D4FF&sideNums=BD93F9&currStreakLabel=00D4FF&sideLabels=8BE9FD&dates=6272A4" />
 <br/>
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Mohammad-Mahidul-Araf-111790 &bg_color=0D1117&color=00D4FF&line=BD93F9&point=FF5555&area=true&hide_border=false&border_color=FF5555" />
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Mohammad-Mahidul-Araf-111790&bg_color=0D1117&color=00D4FF&line=BD93F9&point=FF5555&area=true&hide_border=false&border_color=FF5555" />
 </div>
 ---
 
