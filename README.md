@@ -85,7 +85,7 @@ class Araf:
 <!-- PINNED-REPOS:START -->
 <div align="center">
 
-[![Personal Habit Tracker](https://github-readme-stats.vercel.app/api/pin/?username=Mohammad-Mahidul-Araf-111790&repo=The-Personal-Habit-Tracker&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2&icon_color=8BE9FD)](https://github.com/Mohammad-Mahidul-Araf-111790/The-Personal-Habit-Tracker)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Mohammad-Mahidul-Araf-111790&repo=The-Personal-Habit-Tracker&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2&icon_color=8BE9FD)](https://github.com/Mohammad-Mahidul-Araf-111790/The-Personal-Habit-Tracker)
 
 </div>
 <!-- PINNED-REPOS:END -->
