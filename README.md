@@ -108,7 +108,7 @@ class Araf:
 > 🤖 *Auto-managed — every new public repo triggers an approval issue. Reply `yes` to append it here, `no` to skip.*
 
 <!-- SHOWCASE:START -->
-1. [The-Personal-Habit-Tracker]([(https://github.com/Mohammad-Mahidul-Araf-111790/The-Personal-Habit-Tracker)])
+1. [The-Personal-Habit-Tracker]([https://github.com/Mohammad-Mahidul-Araf-111790/The-Personal-Habit-Tracker])
 <!-- SHOWCASE:END -->
 
 ---
