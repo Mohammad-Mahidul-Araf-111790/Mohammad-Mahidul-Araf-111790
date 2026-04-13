@@ -1,8 +1,31 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Hey%2C%20I'm%20Araf%20👋&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=CS%20Undergrad%20%7C%20AI%20%26%20Data%20Science%20Enthusiast%20%7C%20Cybersecurity%20Explorer&descAlignY=55&descSize=16" />
+<svg width="860" height="160" viewBox="0 0 860 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#0D1117"/>
+      <stop offset="40%"  stop-color="#0A1628"/>
+      <stop offset="75%"  stop-color="#1A0A1E"/>
+      <stop offset="100%" stop-color="#1C0A0A"/>
+    </linearGradient>
+    <linearGradient id="txt" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#00D4FF"/>
+      <stop offset="50%"  stop-color="#BD93F9"/>
+      <stop offset="100%" stop-color="#FF5555"/>
+    </linearGradient>
+  </defs>
+  <rect width="860" height="160" rx="12" fill="url(#bg)"/>
+  <text x="430" y="72" font-family="monospace" font-size="36" font-weight="bold"
+        text-anchor="middle" fill="url(#txt)">Hey, I'm Araf 👋</text>
+  <text x="430" y="112" font-family="monospace" font-size="14"
+        text-anchor="middle" fill="#8BE9FD">
+    CSE Undergrad · AI &amp; Data Science · Cybersecurity Explorer
+  </text>
+  <text x="430" y="140" font-family="monospace" font-size="11"
+        text-anchor="middle" fill="#6272A4">BRAC University · Bangladesh</text>
+</svg>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=6AD3F7&center=true&vCenter=true&width=600&lines=Building+things+with+Python+%26+AI;Data+Science+%7C+ML+%7C+Quantum+Computing;CSE+Undergrad+%40+BRAC+University;Always+learning%2C+always+building.)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&color=00D4FF&center=true&vCenter=true&width=620&lines=Building+things+with+Python+%26+AI;Data+Science+%7C+ML+%7C+Quantum+Computing;CSE+Undergrad+%40+BRAC+University;Always+learning%2C+always+building.)](https://git.io/typing-svg)
 
 </div>
 
@@ -14,7 +37,7 @@
 class Araf:
     university   = "BRAC University"
     degree       = "B.Sc. in Computer Science & Engineering"
-    
+
     interests    = [
         "Artificial Intelligence & Machine Learning",
         "Data Science & Analytics",
@@ -22,7 +45,7 @@ class Araf:
         "Cybersecurity & Ethical Hacking",
         "Software Engineering",
     ]
-    
+
     living_moment = {
         "learned"  : [
             "🖥️  Operating Systems       — processes, scheduling, semaphores",
@@ -38,10 +61,10 @@ class Araf:
             "🔐  Cybersecurity            — pentesting, Burp Suite, bug bounty",
             "📊  Data Science & EDA       — Pandas, Streamlit, storytelling",
             "🌐  LLM & AI Tooling         — LangChain, Claude API, RAG, MCP",
-            "💼  Freelancing              — Fiverr & Upwork (AI/ML & data)",
+            "💼  Freelancing              — Fiverr (AI/ML & data science)",
         ],
     }
-    
+
     thesis_focus = "ML & Quantum Computing applied to Cybersecurity"
     goal         = "Become a globally impactful CS professional"
 ```
@@ -85,28 +108,8 @@ class Araf:
 > 🤖 *Auto-managed — every new public repo triggers an approval issue. Reply `yes` to append it here, `no` to skip.*
 
 <!-- SHOWCASE:START -->
-1. [daily-expense-logger](https://github.com/YOUR_USERNAME/daily-expense-logger)
-2. [ai-problem-analyzer](https://github.com/YOUR_USERNAME/ai-problem-analyzer)
-3. [eda-report-generator](https://github.com/YOUR_USERNAME/eda-report-generator)
-4. [quantum-ml-malware-detector](https://github.com/YOUR_USERNAME/quantum-ml-malware-detector)
+1. [Daily-Expense-Logger](https://github.com/YOUR_USERNAME/Daily-Expense-Logger)
 <!-- SHOWCASE:END -->
-
----
-
-## 📚 Currently Studying
-
-<div align="center">
-
-| Course | Topic Highlights |
-|--------|----------------|
-| 🖥️ Operating Systems | Processes, Threads, IPC, Semaphores, Scheduling |
-| ⚙️ Digital Logic Design | K-Maps, Boolean Algebra, Circuit Design |
-| 🤖 Automata & Computability | FSMs, Turing Machines, Complexity Theory |
-| 🏗️ Software Engineering | Agile, UML, Requirements Engineering |
-| 🔢 Numerical Analysis | LU/QR Decomposition, Linear Systems |
-| ⚛️ Quantum Computing | Linear Algebra for QC, Quantum Circuits |
-
-</div>
 
 ---
 
@@ -115,25 +118,20 @@ class Araf:
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2&icon_color=8BE9FD&include_all_commits=true&count_private=true" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2&icon_color=BD93F9&include_all_commits=true&count_private=true" />
   <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=default&include_all_commits=true&count_private=true" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2&icon_color=8BE9FD&include_all_commits=true&count_private=true" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2&icon_color=BD93F9&include_all_commits=true&count_private=true" />
 </picture>
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&langs_count=8&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&langs_count=8&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2" />
   <source media="(prefers-color-scheme: light)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&langs_count=8&theme=default" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&langs_count=8&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2" />
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&langs_count=8&bg_color=0D1117&border_color=FF5555&title_color=00D4FF&text_color=F8F8F2" />
 </picture>
 
-</div>
-
-<div align="center">
-
-<!-- Streak aligned to GitHub's contribution day boundary (UTC midnight) — updates on each page load -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=YOUR_USERNAME&mode=daily&background=0D1117&border=6272A4&stroke=BD93F9&ring=FF6B9D&fire=FF79C6&currStreakNum=FF6B9D&sideNums=BD93F9&currStreakLabel=FF79C6&sideLabels=8BE9FD&dates=6272A4&hide_border=false" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com?user=YOUR_USERNAME&mode=daily&background=0D1117&border=FF5555&stroke=BD93F9&ring=00D4FF&fire=FF5555&currStreakNum=00D4FF&sideNums=BD93F9&currStreakLabel=00D4FF&sideLabels=8BE9FD&dates=6272A4" />
   <source media="(prefers-color-scheme: light)" srcset="https://streak-stats.demolab.com?user=YOUR_USERNAME&mode=daily" />
-  <img src="https://streak-stats.demolab.com?user=YOUR_USERNAME&mode=daily&background=0D1117&border=6272A4&stroke=BD93F9&ring=FF6B9D&fire=FF79C6&currStreakNum=FF6B9D&sideNums=BD93F9&currStreakLabel=FF79C6&sideLabels=8BE9FD&dates=6272A4" />
+  <img src="https://streak-stats.demolab.com?user=YOUR_USERNAME&mode=daily&background=0D1117&border=FF5555&stroke=BD93F9&ring=00D4FF&fire=FF5555&currStreakNum=00D4FF&sideNums=BD93F9&currStreakLabel=00D4FF&sideLabels=8BE9FD&dates=6272A4" />
 </picture>
 
 </div>
@@ -144,10 +142,9 @@ class Araf:
 
 <div align="center">
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR_LINKEDIN)
-[![Fiverr](https://img.shields.io/badge/Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://fiverr.com/YOUR_USERNAME)
-[![Upwork](https://img.shields.io/badge/Upwork-6FDA44?style=for-the-badge&logo=upwork&logoColor=white)](https://upwork.com/freelancers/YOUR_USERNAME)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:YOUR_EMAIL)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/md-mahidul-alam-araf-70753a229)
+[![Fiverr](https://img.shields.io/badge/Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/sellers/mohammad__araf)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mohammadmahidularaf@gmail.com)
 
 </div>
 
@@ -160,8 +157,4 @@ class Araf:
 > *"The people who are crazy enough to think they can change the world are the ones who do."*
 > — Steve Jobs
 
-</div>
-
-<div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer"/>
 </div>
