@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Hey%2C%20I'm%20Araf%20👋&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=CS%20Undergrad%20%7C%20AI%20%26%20Data%20Science%20Enthusiast%20%7C%20Cybersecurity%20Explorer&descAlignY=55&descSize=16" />
-
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=6AD3F7&center=true&vCenter=true&width=600&lines=Building+things+with+Python+%26+AI;Data+Science+%7C+ML+%7C+Quantum+Computing;CSE+Undergrad+%40+BRAC+University;Always+learning%2C+always+building.)](https://git.io/typing-svg)
 
 </div>
@@ -87,7 +85,7 @@ class Araf:
 <!-- PINNED-REPOS:START -->
 <div align="center">
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Mohammad-Mahidul-Araf-111790&repo=The-Personal-Habit-Tracker&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2&icon_color=8BE9FD)](https://github.com/Mohammad-Mahidul-Araf-111790/The-Personal-Habit-Tracker)
+[![Personal Habit Tracker](https://github-readme-stats.vercel.app/api/pin/?username=Mohammad-Mahidul-Araf-111790&repo=The-Personal-Habit-Tracker&theme=radical&bg_color=0D1117&border_color=BD93F9&title_color=FF79C6&text_color=F8F8F2&icon_color=8BE9FD)](https://github.com/Mohammad-Mahidul-Araf-111790/The-Personal-Habit-Tracker)
 
 </div>
 <!-- PINNED-REPOS:END -->
