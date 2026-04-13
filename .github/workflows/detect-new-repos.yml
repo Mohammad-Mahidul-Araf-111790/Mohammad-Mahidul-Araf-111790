@@ -2,7 +2,7 @@ name: 🔍 Detect New Public Repos
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # runs every 6 hours
+    - cron: "0 */1 * * *"   # runs every hours
   workflow_dispatch:
 
 jobs:
