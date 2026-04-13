@@ -1,110 +1,141 @@
-name: 🔄 Auto-Update Pinned Repos
+name: ✅ Handle Showcase Approval
 
 on:
-  schedule:
-    - cron: "0 0 * * *"   # runs daily at UTC midnight — same boundary GitHub uses for streaks
-  workflow_dispatch:        # allows manual trigger from Actions tab
-  push:
-    branches: [main]
+  issue_comment:
+    types: [created]
 
 jobs:
-  update-pinned-repos:
+  handle:
+    # Only run if: comment is on an open issue AND has the showcase-pending label
+    if: |
+      github.event.issue.state == 'open' &&
+      contains(github.event.issue.labels.*.name, 'showcase-pending')
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      issues: write
 
     steps:
       - name: Checkout profile repo
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Fetch pinned repos & patch README
+      - name: Process yes/no response
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_USERNAME: ${{ github.repository_owner }}
+          GH_TOKEN:       ${{ secrets.GITHUB_TOKEN }}
+          GH_USERNAME:    ${{ github.repository_owner }}
+          COMMENT_BODY:   ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          ISSUE_NUMBER:   ${{ github.event.issue.number }}
+          ISSUE_TITLE:    ${{ github.event.issue.title }}
         run: |
-          python - <<'EOF'
-          import os, re, requests, json
+          python3 - <<'EOF'
+          import os, re, json, requests
 
-          username = os.environ["GH_USERNAME"]
-          token    = os.environ["GH_TOKEN"]
+          username      = os.environ["GH_USERNAME"]
+          token         = os.environ["GH_TOKEN"]
+          comment       = os.environ["COMMENT_BODY"].strip().lower()
+          commenter     = os.environ["COMMENT_AUTHOR"]
+          issue_number  = os.environ["ISSUE_NUMBER"]
+          issue_title   = os.environ["ISSUE_TITLE"]
+          headers       = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}
 
-          # GitHub GraphQL — fetch up to 6 pinned repos
-          query = """
-          {
-            user(login: "%s") {
-              pinnedItems(first: 6, types: REPOSITORY) {
-                nodes {
-                  ... on Repository {
-                    name
-                    description
-                    url
-                  }
-                }
-              }
-            }
-          }
-          """ % username
+          # Only the repo owner's response counts
+          if commenter != username:
+              print(f"Comment from {commenter} ignored — not the repo owner.")
+              exit()
 
-          r = requests.post(
-              "https://api.github.com/graphql",
-              json={"query": query},
-              headers={"Authorization": f"Bearer {token}"},
-          )
-          repos = r.json()["data"]["user"]["pinnedItems"]["nodes"]
+          # Extract repo name from issue title:  🆕 Add `REPO_NAME` to profile showcase?
+          match = re.search(r"`(.+?)`", issue_title)
+          if not match:
+              print("Could not parse repo name from issue title.")
+              exit()
 
-          # Build repo card HTML block
-          CARD = (
-              '[![Readme Card]'
-              '(https://github-readme-stats.vercel.app/api/pin/'
-              '?username={user}&repo={repo}'
-              '&theme=radical&bg_color=0D1117&border_color=BD93F9'
-              '&title_color=FF79C6&text_color=F8F8F2&icon_color=8BE9FD)]'
-              '({url})'
-          )
+          repo_name = match.group(1)
+          repo_url  = f"https://github.com/{username}/{repo_name}"
 
-          cards = "\n".join(
-              CARD.format(user=username, repo=rep["name"], url=rep["url"])
-              for rep in repos
-          )
+          def close_issue(reaction_comment):
+              requests.post(
+                  f"https://api.github.com/repos/{username}/{username}/issues/{issue_number}/comments",
+                  headers=headers,
+                  json={"body": reaction_comment}
+              )
+              requests.patch(
+                  f"https://api.github.com/repos/{username}/{username}/issues/{issue_number}",
+                  headers=headers,
+                  json={"state": "closed"}
+              )
 
-          block = (
-              "<!-- PINNED-REPOS:START -->\n"
-              "<div align=\"center\">\n\n"
-              + cards + "\n\n"
-              "</div>\n"
-              "<!-- PINNED-REPOS:END -->"
-          )
+          # ── YES branch ──────────────────────────────────────────────────────────
+          if comment in ("yes", "y"):
+              # Read README
+              with open("README.md", "r") as f:
+                  content = f.read()
 
-          with open("README.md", "r") as f:
-              content = f.read()
+              # Find the SHOWCASE block
+              start_tag = "<!-- SHOWCASE:START -->"
+              end_tag   = "<!-- SHOWCASE:END -->"
 
-          updated = re.sub(
-              r"<!-- PINNED-REPOS:START -->.*?<!-- PINNED-REPOS:END -->",
-              block,
-              content,
-              flags=re.DOTALL,
-          )
+              if start_tag not in content:
+                  print("SHOWCASE block not found in README.")
+                  close_issue("⚠️ Could not find the showcase block in README. Please check manually.")
+                  exit()
 
-          with open("README.md", "w") as f:
-              f.write(updated)
+              # Extract current list
+              block_match = re.search(
+                  rf"{re.escape(start_tag)}(.*?){re.escape(end_tag)}",
+                  content,
+                  re.DOTALL
+              )
+              block_body = block_match.group(1).strip()
 
-          print(f"✅ Patched README with {len(repos)} pinned repos.")
+              # Count existing items for next number
+              existing = re.findall(r"^\d+\.", block_body, re.MULTILINE)
+              next_num = len(existing) + 1
+
+              new_entry    = f"{next_num}. [{repo_name}]({repo_url})"
+              updated_block = (
+                  f"{start_tag}\n"
+                  f"{block_body}\n"
+                  f"{new_entry}\n"
+                  f"{end_tag}"
+              )
+
+              updated_content = re.sub(
+                  rf"{re.escape(start_tag)}.*?{re.escape(end_tag)}",
+                  updated_block,
+                  content,
+                  flags=re.DOTALL
+              )
+
+              with open("README.md", "w") as f:
+                  f.write(updated_content)
+
+              # Update tracked list
+              with open(".github/tracked_repos.json") as f:
+                  tracked = json.load(f)
+              tracked.setdefault("showcased", []).append(repo_name)
+              with open(".github/tracked_repos.json", "w") as f:
+                  json.dump(tracked, f, indent=2)
+
+              close_issue(f"✅ Done! **[{repo_name}]({repo_url})** has been added to your profile showcase as item #{next_num}.")
+              print(f"Added {repo_name} to README at position {next_num}.")
+
+          # ── NO branch ───────────────────────────────────────────────────────────
+          elif comment in ("no", "n"):
+              close_issue(f"👍 Got it — **{repo_name}** will not be added to your showcase.")
+              print(f"Skipped {repo_name}.")
+
+          else:
+              print(f"Comment '{comment}' is not yes/no — ignoring.")
+
           EOF
 
-      - name: Commit & push if changed
+      - name: Commit README & tracked list changes
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git diff --quiet && echo "No changes." || (
-            git add README.md
-            git commit -m "chore: auto-update pinned repos [skip ci]"
+          git diff --quiet && echo "No changes to commit." || (
+            git add README.md .github/tracked_repos.json
+            git commit -m "feat: update profile showcase via issue approval [skip ci]"
             git push
           )
