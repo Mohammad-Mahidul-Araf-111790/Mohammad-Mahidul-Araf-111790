@@ -1,0 +1,116 @@
+name: 🔍 Detect New Public Repos
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # runs every 6 hours
+  workflow_dispatch:
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout profile repo
+        uses: actions/checkout@v4
+
+      - name: Detect new repos & open approval issues
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USERNAME: ${{ github.repository_owner }}
+        run: |
+          python3 - <<'EOF'
+          import os, json, requests
+
+          username = os.environ["GH_USERNAME"]
+          token    = os.environ["GH_TOKEN"]
+          headers  = {"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"}
+
+          # ── 1. Fetch all current public repos (excluding the profile repo itself) ──
+          repos_resp = requests.get(
+              f"https://api.github.com/users/{username}/repos?per_page=100&type=public",
+              headers=headers
+          )
+          all_repos = [
+              r["name"] for r in repos_resp.json()
+              if r["name"] != username and not r["fork"]
+          ]
+
+          # ── 2. Load the tracked list (repos already seen / added / rejected) ──
+          tracked_file = ".github/tracked_repos.json"
+          if os.path.exists(tracked_file):
+              with open(tracked_file) as f:
+                  tracked = json.load(f)
+          else:
+              # First run — treat all existing repos as already seen (don't spam issues)
+              tracked = {"seen": all_repos, "showcased": []}
+              with open(tracked_file, "w") as f:
+                  json.dump(tracked, f, indent=2)
+              print("First run — seeded tracked list. No issues opened.")
+              exit()
+
+          seen      = set(tracked.get("seen", []))
+          new_repos = [r for r in all_repos if r not in seen]
+
+          if not new_repos:
+              print("No new repos found.")
+              exit()
+
+          # ── 3. For each new repo, open a GitHub Issue (the "popup") ──
+          for repo in new_repos:
+              repo_url = f"https://github.com/{username}/{repo}"
+
+              # Check if an issue for this repo already exists (avoid duplicates)
+              issues_resp = requests.get(
+                  f"https://api.github.com/repos/{username}/{username}/issues?state=open&labels=showcase-pending",
+                  headers=headers
+              )
+              existing_titles = [i["title"] for i in issues_resp.json()]
+              issue_title = f"🆕 Add `{repo}` to profile showcase?"
+
+              if issue_title in existing_titles:
+                  print(f"Issue already open for {repo}, skipping.")
+              else:
+                  body = f"""Hey! 👋 A new public repository was detected:
+
+**[{repo}]({repo_url})**
+
+Do you want to add it to your GitHub Profile showcase?
+
+> Reply with **`yes`** to add it to your README.
+> Reply with **`no`** to skip it permanently.
+
+_(This issue will stay open until you respond.)_"""
+
+                  requests.post(
+                      f"https://api.github.com/repos/{username}/{username}/issues",
+                      headers=headers,
+                      json={
+                          "title": issue_title,
+                          "body":  body,
+                          "labels": ["showcase-pending"]
+                      }
+                  )
+                  print(f"✅ Opened issue for: {repo}")
+
+              # Mark as seen so we don't re-open the issue next run
+              seen.add(repo)
+
+          # ── 4. Save updated tracked list ──
+          tracked["seen"] = list(seen)
+          with open(tracked_file, "w") as f:
+              json.dump(tracked, f, indent=2)
+
+          EOF
+
+      - name: Commit updated tracked list
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && echo "No changes." || (
+            git add .github/tracked_repos.json
+            git commit -m "chore: update tracked repos list [skip ci]"
+            git push
+          )
